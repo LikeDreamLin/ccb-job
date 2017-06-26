@@ -1,0 +1,96 @@
+package com.ccb.job.admin.core.thread;
+
+import com.ccb.job.admin.core.model.CcbJobRegistry;
+import com.ccb.job.admin.core.schedule.CcbJobDynamicScheduler;
+import com.ccb.job.core.enums.RegistryConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * job registry instance
+ * @author xuxueli 2016-10-02 19:10:24
+ */
+public class JobRegistryMonitorHelper {
+	private static  Logger logger = LoggerFactory.getLogger(JobRegistryMonitorHelper.class);
+
+	private static  JobRegistryMonitorHelper instance = new JobRegistryMonitorHelper();
+	public static  JobRegistryMonitorHelper getInstance(){
+		return instance;
+	}
+
+	private ConcurrentHashMap<String, List<String>> registMap = new ConcurrentHashMap<String, List<String>>();
+
+	private Thread registryThread;
+	private boolean toStop = false;
+	public void start(){
+		registryThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (!toStop) {
+					try {
+						/*int ret = CcbJobDynamicScheduler.ccbJobRegistryDao.registryUpdate(RegistryConfig.RegistType.ADMIN.name(),
+								RegistryConfig.RegistType.ADMIN.name(),getAddress() );
+						if(ret < 1){
+							CcbJobDynamicScheduler.ccbJobRegistryDao.registrySave(RegistryConfig.RegistType.ADMIN.name(),
+									RegistryConfig.RegistType.ADMIN.name(),getAddress() );
+						}*/
+                        // remove dead admin/executor
+						CcbJobDynamicScheduler.ccbJobRegistryDao.removeDead(RegistryConfig.DEAD_TIMEOUT);
+
+                        // fresh registry map
+						ConcurrentHashMap<String, List<String>> temp = new ConcurrentHashMap<String, List<String>>();
+						List<CcbJobRegistry> list = CcbJobDynamicScheduler.ccbJobRegistryDao.findAll(RegistryConfig.DEAD_TIMEOUT);
+						if (list != null) {
+							for (CcbJobRegistry item: list) {
+								String groupKey = makeGroupKey(item.getRegistryGroup(), item.getRegistryKey());
+								List<String> registryList = temp.get(groupKey);
+								if (registryList == null) {
+									registryList = new ArrayList<String>();
+								}
+								registryList.add(item.getRegistryValue());
+								temp.put(groupKey, registryList);
+							}
+						}
+						registMap = temp;
+					} catch (Exception e) {
+						logger.error("job registry instance error:{}", e);
+					}
+					try {
+						TimeUnit.SECONDS.sleep(RegistryConfig.BEAT_TIMEOUT);
+					} catch (InterruptedException e) {
+						logger.error("job registry instance error:{}", e);
+					}
+				}
+			}
+		});
+		registryThread.setDaemon(true);
+		registryThread.start();
+	}
+
+	public void toStop(){
+		toStop = true;
+		//registryThread.interrupt();
+	}
+
+/*	public String getAddress( ){
+		HttpServletRequest request = (HttpServletRequest)RequestContextHolder.getRequestAttributes();
+		System.out.println(request);
+		String address = request.getRemoteAddr()+":"+request.getRemotePort();
+		return address;
+	}*/
+	
+	private static  String makeGroupKey(String registryGroup, String registryKey){
+		return registryGroup.concat("_").concat(registryKey);
+	}
+	
+	public static  List<String> discover(String registryGroup, String registryKey){
+		String groupKey = makeGroupKey(registryGroup, registryKey);
+		return instance.registMap.get(groupKey);
+	}
+	
+}

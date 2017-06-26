@@ -1,0 +1,41 @@
+server:
+  port: 7777
+
+
+spring:
+  application:
+    name: ccb-job-core-executor
+  cloud:
+    consul:
+      host: 128.1.76.194
+      port: 8500
+      enabled: true
+      config:
+        enabled: true
+        format: YAML
+        data-key: configuration
+      discovery:
+        enabled: true
+        instanceId: ${spring.application.name}-${spring.cloud.consul.host}-${spring.cloud.consul.port}
+        serviecName: ${spring.application.name}
+        health-check-interval: 60s
+        healthCheckPath: /health
+        preferIpAddress: true
+
+#监控
+endpoints:
+  actuator:
+    enabled: true
+  restart:
+    enabled: true
+  refresh:
+    enabled: true  #设置为true 当consul config中的值发生变化时 ，后台会刷新consul config
+    sensitive: false
+  shutdown:
+    enabled: true
+    sensitive: false
+  health:
+    sensitive: false
+
+logging:
+    config: classpath:logback.xml
