@@ -33,12 +33,6 @@ public class JobRegistryMonitorHelper {
 			public void run() {
 				while (!toStop) {
 					try {
-						/*int ret = CcbJobDynamicScheduler.ccbJobRegistryDao.registryUpdate(RegistryConfig.RegistType.ADMIN.name(),
-								RegistryConfig.RegistType.ADMIN.name(),getAddress() );
-						if(ret < 1){
-							CcbJobDynamicScheduler.ccbJobRegistryDao.registrySave(RegistryConfig.RegistType.ADMIN.name(),
-									RegistryConfig.RegistType.ADMIN.name(),getAddress() );
-						}*/
                         // remove dead admin/executor
 						CcbJobDynamicScheduler.ccbJobRegistryDao.removeDead(RegistryConfig.DEAD_TIMEOUT);
 
@@ -76,13 +70,6 @@ public class JobRegistryMonitorHelper {
 		toStop = true;
 		//registryThread.interrupt();
 	}
-
-/*	public String getAddress( ){
-		HttpServletRequest request = (HttpServletRequest)RequestContextHolder.getRequestAttributes();
-		System.out.println(request);
-		String address = request.getRemoteAddr()+":"+request.getRemotePort();
-		return address;
-	}*/
 	
 	private static  String makeGroupKey(String registryGroup, String registryKey){
 		return registryGroup.concat("_").concat(registryKey);
