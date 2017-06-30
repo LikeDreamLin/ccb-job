@@ -10,3 +10,6 @@ ccb-job 是在开源框架xxl-job（https://github.com/xuxueli/xxl-job） 上进
 3.数据库连接池由原来c3p0改成了alibaba ， informix与c3p0搭配使用报一堆的提醒
 
 4.ccb-job中的执行器只是具有服务转发请求的功能，没有具体的业务逻辑
+
+
+5.。。。
