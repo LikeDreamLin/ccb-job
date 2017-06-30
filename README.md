@@ -22,8 +22,10 @@ ccb-job 是在开源框架xxl-job（https://github.com/xuxueli/xxl-job） 上进
 consul 上面的配置信息：
 
 
+
+ccb-job-admin配置信息：
 config/ccb-job-admin/configuration:
-#登陆信息
+
 ccb:
   job:
     log: /home/ap/ssbp/log/ccb-job/ccb-job-admin.log
@@ -32,8 +34,8 @@ ccb:
       password: 123456
 
 
-config/ccb-job-core-executor/configuration
-### xxl-job executor address
+ccb-job-core-executor配置信息：
+config/ccb-job-core-executor/configuration：
 ccb:
  job:
   admin:
@@ -44,7 +46,7 @@ ccb:
    logpath: /home/ap/ssbp/log/ccb-job/ccb-job-executor
    #ip:
 
-
+公共配置信息：
 config/application,dev/configuration
 spring:
   datasource:
