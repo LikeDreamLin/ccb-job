@@ -2,12 +2,15 @@ package com.ccb.job.core.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * httpclient util
@@ -74,7 +80,48 @@ public class HttpClientUtil {
 		}
 		return responseBytes;
 	}
-	
+
+	public static String  postRequest(String reqURL, Map<String ,String >  params)  {
+		String result = "";
+		HttpPost httpPost = new HttpPost(reqURL);
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		try {
+			// init post
+			if (params != null && !params.isEmpty()) {
+				List<NameValuePair> formParams = new ArrayList<NameValuePair>();
+				for (Map.Entry<String, String> entry : params.entrySet()) {
+					formParams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+				}
+				httpPost.setEntity(new UrlEncodedFormEntity(formParams, "UTF-8"));
+			}
+			// timeout
+			RequestConfig requestConfig = RequestConfig.custom()
+					.setConnectionRequestTimeout(10000)
+					.setSocketTimeout(10000)
+					.setConnectTimeout(10000)
+					.build();
+			httpPost.setConfig(requestConfig);
+			// do post
+			HttpResponse response = httpClient.execute(httpPost);
+			HttpEntity entity = response.getEntity();
+			if (null != entity) {
+				result = EntityUtils.toString(entity);
+			}
+		} catch (Exception e) {
+			logger.error("", e);
+		} finally {
+			httpPost.releaseConnection();
+			try {
+				httpClient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+		}
+
+
+
 	/**
 	 * read bytes from http request
 	 * @param request
@@ -106,4 +153,8 @@ public class HttpClientUtil {
 		return new byte[] {};
 	}
 
+
+	public static void main(String[] args) {
+
+	}
 }

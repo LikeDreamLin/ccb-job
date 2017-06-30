@@ -25,7 +25,6 @@
        </dependencyManagement>-->
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -186,7 +185,7 @@
         </dependency>
 
         <!-- javax.mail -->
-        <dependency>
+       <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.6</version>
@@ -198,6 +197,20 @@
             <artifactId>httpclient</artifactId>
             <version>4.3.6</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-all</artifactId>
+            <version>3.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.31</version>
+        </dependency>
+
     </dependencies>
 
 

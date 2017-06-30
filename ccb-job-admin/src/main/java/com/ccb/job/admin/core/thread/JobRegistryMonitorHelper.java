@@ -70,7 +70,7 @@ public class JobRegistryMonitorHelper {
 		toStop = true;
 		//registryThread.interrupt();
 	}
-	
+
 	private static  String makeGroupKey(String registryGroup, String registryKey){
 		return registryGroup.concat("_").concat(registryKey);
 	}

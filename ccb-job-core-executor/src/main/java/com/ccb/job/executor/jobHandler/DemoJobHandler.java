@@ -5,10 +5,12 @@ import com.ccb.job.core.biz.model.ReturnT;
 import com.ccb.job.core.handler.IJobHandler;
 import com.ccb.job.core.handler.annotation.JobHander;
 import com.ccb.job.core.log.CcbJobLogger;
-import com.ccb.job.executor.model.RestResponse;
+import com.ccb.job.executor.model.ResponseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.sql.Array;
 
 
 /**
@@ -31,34 +33,34 @@ public class DemoJobHandler extends IJobHandler {
 
 	@Override
 	public ReturnT<String> execute(String... params)  {
-		CcbJobLogger.log("CCB-JOB, Hello World.");
 		String msg  =  "";
 		if(params == null){
-			msg = "没有转发请求的URL，无法转发请求！";
+			msg = "无法转发请求,URL为空！";
 			CcbJobLogger.log(msg);
 			return  new ReturnT<>(ReturnT.FAIL_CODE,msg);
 		}
-		CcbJobLogger.log("正在转发请求。。。请求地址："+params[0]);
-		//http://server-sms/ccbJob
+		CcbJobLogger.log("正在处理请求。。。请求地址："+params[0]);
 		try{
-			RestResponse restResponse = restTemplate.getForObject(params[0],RestResponse.class);
+			ResponseInfo  restResponse = restTemplate.postForObject(params[0],null,ResponseInfo.class);
 			if (null  == restResponse){
-				msg = "请求异常";
+				msg = "响应信息异常！";
 				CcbJobLogger.log(msg);
 			}else{
-				if ("200".equals(restResponse.getRespCode() )){
-					CcbJobLogger.log("请求成功");
+				if ("000000".equals(restResponse.getResponseCode() )){
+					CcbJobLogger.log("请求成功。。。响应信息：" + restResponse.toString() );
 					return ReturnT.SUCCESS;
 				}else{
-					msg = "请求异常。。。响应信息："+restResponse.getRespMsg();
+					msg = "请求异常。。。响应信息："+ restResponse.toString();
 					CcbJobLogger.log(msg);
 				}
 			}
 		}catch (Exception e){
-			msg = "请求异常:"+e.getMessage();
+			msg = "请求出错: "+e.getMessage();
 			CcbJobLogger.log(msg);
 		}
 		return  new ReturnT<>(ReturnT.FAIL_CODE,msg);
 	}
+
+
 
 }

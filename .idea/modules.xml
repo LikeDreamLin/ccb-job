@@ -6,8 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/ccb-job-admin/ccb-job-admin.iml" filepath="$PROJECT_DIR$/ccb-job-admin/ccb-job-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ccb-job-core/ccb-job-core.iml" filepath="$PROJECT_DIR$/ccb-job-core/ccb-job-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/ccb-job-core-executor/ccb-job-core-executor.iml" filepath="$PROJECT_DIR$/ccb-job-core-executor/ccb-job-core-executor.iml" />
-      <module fileurl="file://$USER_HOME$/Desktop/xyd-sms/xyd-job-gateway/xyd-job-gateway.iml" filepath="$USER_HOME$/Desktop/xyd-sms/xyd-job-gateway/xyd-job-gateway.iml" />
-      <module fileurl="file://$USER_HOME$/Desktop/xyd-sms/xyd-job-sms/xyd-job-sms.iml" filepath="$USER_HOME$/Desktop/xyd-sms/xyd-job-sms/xyd-job-sms.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/xyd-sms/xyd-sms-gateway/xyd-job-gateway.iml" filepath="$USER_HOME$/Desktop/xyd-sms/xyd-sms-gateway/xyd-job-gateway.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/xyd-sms/xyd-sms-sms/xyd-job-sms.iml" filepath="$USER_HOME$/Desktop/xyd-sms/xyd-sms-sms/xyd-job-sms.iml" />
       <module fileurl="file://$USER_HOME$/Desktop/xyd-sms/xyd-sms.iml" filepath="$USER_HOME$/Desktop/xyd-sms/xyd-sms.iml" />
       <module fileurl="file://$USER_HOME$/Desktop/xyd-sms/xyd-sms-common/xyd-sms-common.iml" filepath="$USER_HOME$/Desktop/xyd-sms/xyd-sms-common/xyd-sms-common.iml" />
     </modules>

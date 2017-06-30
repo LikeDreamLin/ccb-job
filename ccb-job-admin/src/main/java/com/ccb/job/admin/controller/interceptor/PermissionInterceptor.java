@@ -1,11 +1,14 @@
 package com.ccb.job.admin.controller.interceptor;
 
 import com.ccb.job.admin.controller.annotation.PermessionLimit;
+import com.ccb.job.admin.core.model.ConsulKV;
 import com.ccb.job.admin.core.util.CookieUtil;
-import com.ccb.job.admin.core.util.PropertiesUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
@@ -15,13 +18,12 @@ import java.math.BigInteger;
  * @author xuxueli 2015-12-12 18:09:04
  */
 public class PermissionInterceptor extends HandlerInterceptorAdapter {
-	
+
+
 	public static final String LOGIN_IDENTITY_KEY = "LOGIN_IDENTITY";
 	public static final String LOGIN_IDENTITY_TOKEN;
     static {
-        String username = PropertiesUtil.getString("ccb.job.login.username");
-        String password = PropertiesUtil.getString("ccb.job.login.password");
-        String temp = username + "_" + password;
+        String temp = ConsulKV.username + "_" + ConsulKV.password;
         LOGIN_IDENTITY_TOKEN = new BigInteger(1, temp.getBytes()).toString(16);
     }
 	
@@ -59,5 +61,6 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 		
 		return super.preHandle(request, response, handler);
 	}
-	
+
+
 }

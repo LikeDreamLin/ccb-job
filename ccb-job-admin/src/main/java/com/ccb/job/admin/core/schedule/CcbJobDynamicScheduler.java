@@ -82,7 +82,6 @@ public final class CcbJobDynamicScheduler implements ApplicationContextAware, In
 	@Deprecated
 	public static  List<Map<String, Object>> getJobList(){
 		List<Map<String, Object>> jobList = new ArrayList<Map<String,Object>>();
-		
 		try {
 			if (scheduler.getJobGroupNames()==null || scheduler.getJobGroupNames().size()==0) {
 				return null;

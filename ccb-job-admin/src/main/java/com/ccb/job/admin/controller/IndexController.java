@@ -2,10 +2,11 @@ package com.ccb.job.admin.controller;
 
 import com.ccb.job.admin.controller.annotation.PermessionLimit;
 import com.ccb.job.admin.controller.interceptor.PermissionInterceptor;
-import com.ccb.job.admin.core.util.PropertiesUtil;
+import com.ccb.job.admin.core.model.ConsulKV;
 import com.ccb.job.admin.service.ICcbJobService;
 import com.ccb.job.core.biz.model.ReturnT;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class IndexController {
 
 	@Resource
 	private ICcbJobService ccbJobService;
+
+
 
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -54,10 +57,10 @@ public class IndexController {
 	@ResponseBody
 	@PermessionLimit(limit=false)
 	public ReturnT<String> loginDo(HttpServletRequest request, HttpServletResponse response, String userName, String password, String ifRemember){
-		if (!PermissionInterceptor.ifLogin(request)) {
+			if (!PermissionInterceptor.ifLogin(request)) {
 			if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)
-					&& PropertiesUtil.getString("ccb.job.login.username").equals(userName)
-					&& PropertiesUtil.getString("ccb.job.login.password").equals(password)) {
+					&& ConsulKV.username.equals(userName)
+					&& ConsulKV.password.equals(password)) {
 				boolean ifRem = false;
 				if (StringUtils.isNotBlank(ifRemember) && "on".equals(ifRemember)) {
 					ifRem = true;

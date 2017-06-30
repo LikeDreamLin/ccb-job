@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Properties;
@@ -24,14 +25,15 @@ public class PropertiesUtil {
 	 */
 	public static Properties loadProperties(String propertyFileName) {
 		Properties prop = new Properties();
-		InputStreamReader in = null;
+		InputStream in = null;
 		try {
 			URL url = null;
 			ClassLoader loder = Thread.currentThread().getContextClassLoader();
-			url = loder.getResource(propertyFileName); 
-			in = new InputStreamReader(new FileInputStream(url.getPath()), "UTF-8");
+			//url = loder.getResource(propertyFileName);
+			//in = new InputStreamReader(new FileInputStream(url.getPath()), "UTF-8");
+			in = loder.getResourceAsStream(propertyFileName);
 			prop.load(in);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		} finally {
 			if (in != null) {
@@ -53,10 +55,10 @@ public class PropertiesUtil {
 		return null;
 	}
 	
-/*
-	public static void main(String[] args) {
-		System.out.println(getString("xxl.job.login.username"));
-	}
-*/
+
+/*	public static void main(String[] args) {
+		System.out.println(getString("ccb.job.login.username"));
+	}*/
+
 
 }

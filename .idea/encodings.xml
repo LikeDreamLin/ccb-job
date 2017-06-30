@@ -2,9 +2,10 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$USER_HOME$/Desktop/xyd-sms" charset="UTF-8" />
-    <file url="file://$USER_HOME$/Desktop/xyd-sms/xyd-job-gateway" charset="UTF-8" />
     <file url="file://$USER_HOME$/Desktop/xyd-sms/xyd-job-sms" charset="UTF-8" />
     <file url="file://$USER_HOME$/Desktop/xyd-sms/xyd-sms-common" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Desktop/xyd-sms/xyd-sms-gateway" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Desktop/xyd-sms/xyd-sms-sms" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ccb-job-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ccb-job-core" charset="UTF-8" />

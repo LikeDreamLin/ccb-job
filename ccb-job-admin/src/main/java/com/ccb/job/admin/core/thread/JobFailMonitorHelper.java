@@ -5,6 +5,7 @@ import com.ccb.job.admin.core.model.CcbJobInfo;
 import com.ccb.job.admin.core.model.CcbJobLog;
 import com.ccb.job.admin.core.schedule.CcbJobDynamicScheduler;
 import com.ccb.job.admin.core.util.MailUtil;
+import com.ccb.job.admin.core.util.SmsUtil;
 import com.ccb.job.core.biz.model.ReturnT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,14 +61,13 @@ public class JobFailMonitorHelper {
 								if (ReturnT.FAIL_CODE == log.getTriggerCode()|| ReturnT.FAIL_CODE==log.getHandleCode()) {
 									CcbJobInfo info = CcbJobDynamicScheduler.ccbJobInfoDao.loadById(log.getJobId());
 									if (info!=null && info.getAlarmEmail()!=null && info.getAlarmEmail().trim().length()>0) {
-
-										Set<String> emailSet = new HashSet<String>(Arrays.asList(info.getAlarmEmail().split(",")));
-										for (String email: emailSet) {
-											String title = "《调度监控报警》(任务调度中心XXL-JOB)";
+										Set<String> phoneSet = new HashSet<String>(Arrays.asList(info.getAlarmEmail().split(",")));
 											CcbJobGroup group = CcbJobDynamicScheduler.ccbJobGroupDao.load(Integer.valueOf(info.getJobGroup()));
-											String content = MessageFormat.format("任务调度失败, 执行器名称:{0}, 任务描述:{1}.", group!=null?group.getTitle():"null", info.getJobDesc());
-											MailUtil.sendMail(email, title, content, false, null);
-										}
+											String content = "《调度监控报警》任务调度失败, 执行器名称"+ group!=null?group.getTitle():"null"+", 任务描述: "+info.getJobDesc()+".";
+											//任务失败发送邮件换成发送短信
+											//MailUtil.sendMail(email, title, content, false, null);
+											SmsUtil.sendMulitMsg(phoneSet,content);
+
 									}
 								}
 							}

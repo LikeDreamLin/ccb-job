@@ -13,5 +13,3 @@ ccb-job 是在开源框架xxl-job（https://github.com/xuxueli/xxl-job） 上进
 
 
 5.原来的配置文件通过spring cloud consul config 迁移到consul 的控制台
-
-6.。。。

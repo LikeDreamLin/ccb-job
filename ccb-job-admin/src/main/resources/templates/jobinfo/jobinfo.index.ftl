@@ -17,7 +17,6 @@
 	<@netCommon.commonHeader />
 	<!-- left -->
 	<@netCommon.commonLeft "jobinfo" />
-	
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
@@ -94,7 +93,6 @@
 			</div>
 	    </section>
 	</div>
-	
 	<!-- footer -->
 	<@netCommon.commonFooter />
 </div>
@@ -171,8 +169,8 @@
 					<div class="form-group">
                         <label for="lastname" class="col-sm-2 control-label">负责人<font color="red">*</font></label>
                         <div class="col-sm-4"><input type="text" class="form-control" name="author" placeholder="请输入“负责人”" maxlength="50" ></div>
-						<label for="lastname" class="col-sm-2 control-label">报警邮件<font color="black">*</font></label>
-						<div class="col-sm-4"><input type="text" class="form-control" name="alarmEmail" placeholder="请输入“报警邮件”，多个邮件地址逗号分隔" maxlength="100" ></div>
+						<label for="lastname" class="col-sm-2 control-label">报警手机号码<font color="black">*</font></label>
+						<div class="col-sm-4"><input type="text" class="form-control" name="alarmEmail" placeholder="请输入“报警手机号码”，多个手机号码逗号分隔" maxlength="100" ></div>
 					</div>
 
                     <hr>

@@ -11,9 +11,10 @@ import com.ecwid.consul.v1.health.model.Check;
 import com.ecwid.consul.v1.health.model.HealthService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,8 @@ import java.util.*;
 @RequestMapping("/jobgroup")
 public class JobGroupController {
 
+	private static  Logger logger = LoggerFactory.getLogger(JobGroupController.class);
+
 	@Resource
 	public ICcbJobInfoDao ccbJobInfoDao;
 	@Resource
@@ -38,20 +41,23 @@ public class JobGroupController {
 	@Autowired
 	private ConsulClient consulClient;
 
-	@Value("${spring.application.name:ccb-job-admin}")
+	@Value("${spring.application.name}")
 	private String serverName;
+
+
 
 	@RequestMapping
 	public String index(Model model) {
 		// job admin
-		Set<String> adminAddressList = new HashSet<>();
-		List<HealthService>  response = consulClient.getHealthServices(serverName, false, null).getValue();
+		Set<String> adminAddressList = new HashSet<String>();
+		List<HealthService>  response = consulClient.getHealthServices(serverName, true, null).getValue();
 		for (HealthService service : response) {
+			logger.info(service.toString());
 			String address = service.getService().getAddress();
 			int port =  service.getService().getPort();
 			adminAddressList.add(address +":"+port);
-		}
 
+		}
 		// job group (executor)
 		List<CcbJobGroup> list = ccbJobGroupDao.findAll();
 
