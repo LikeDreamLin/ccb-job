@@ -19,7 +19,7 @@
       </profile>
       <profile default="false" name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="xyd-job-gateway" />
@@ -28,28 +28,28 @@
       </profile>
       <profile default="false" name="Annotation profile for ccb-job-core-executor" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="ccb-job-core-executor" />
       </profile>
       <profile default="false" name="Annotation profile for ccb-job-core" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="ccb-job-core" />
       </profile>
       <profile default="false" name="Annotation profile for ccb-job-admin" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="ccb-job-admin" />
       </profile>
       <profile default="false" name="Annotation profile for xyd-sms-gateway" enabled="true">
         <sourceOutputDir name="../xyd-job-gateway/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../xyd-job-gateway/target/generated-test-sources/test-annotations" />
+        <sourceTestOutputDir name="..\xyd-job-gateway\target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
       </profile>

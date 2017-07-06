@@ -186,15 +186,15 @@
 <textarea class="glueSource_java" style="display:none;" >
 package com.xxl.job.service.handler;
 
-import com.xxl.job.core.log.CcbJobLogger;
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.handler.IJobHandler;
+import com.ccb.job.core.log.CcbJobLogger;
+import com.ccb.job.core.biz.model.ReturnT;
+import com.ccb.job.core.handler.IJobHandler;
 
 public class DemoGlueJobHandler extends IJobHandler {
 
 	@Override
 	public ReturnT<String> execute(String... params) throws Exception {
-		CcbJobLogger.log("XXL-JOB, Hello World.");
+		CcbJobLogger.log("CCB-JOB, Hello World.");
 		return ReturnT.SUCCESS;
 	}
 

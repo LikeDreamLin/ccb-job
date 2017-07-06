@@ -23,7 +23,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class JobFailMonitorHelper {
 	private static  Logger logger = LoggerFactory.getLogger(JobFailMonitorHelper.class);
-	
+
+	//单例
 	private static  JobFailMonitorHelper instance = new JobFailMonitorHelper();
 	public static  JobFailMonitorHelper getInstance(){
 		return instance;

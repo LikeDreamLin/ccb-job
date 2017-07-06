@@ -35,8 +35,6 @@
         </dependencies>
     </dependencyManagement>
 
-
-
     <build>
         <plugins>
             <plugin>
@@ -47,12 +45,6 @@
                     <source>1.7</source>
                     <target>1.7</target>
                     <encoding>UTF8</encoding>
-                  <!--  <compilerArguments>
-                        <verbose/>
-                        <bootclasspath>
-                            ${java.home}\lib\deploy.jar
-                        </bootclasspath>
-                    </compilerArguments>-->
                 </configuration>
             </plugin>
             <!--maven 执行测试用例的插件-->
@@ -68,13 +60,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!--<executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>-->
             </plugin>
         </plugins>
     </build>

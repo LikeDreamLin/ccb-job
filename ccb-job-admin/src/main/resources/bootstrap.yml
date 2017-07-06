@@ -10,7 +10,7 @@ spring:
     config:
         enabled: false
     consul:
-      host: 128.1.76.194
+      host: localhost
       #host: 31.0.186.247
       port: 8500
       enabled: true
@@ -25,6 +25,29 @@ spring:
         health-check-interval: 5s
         healthCheckPath: /health
         preferIpAddress: true
+# freemarker模板
+  freemarker:
+    suffix: .ftl
+    request-context-attribute: request
+    content-type: text/html;charset=UTF-8
+    expose-spring-macro-helpers: true
+    expose-request-attributes: true
+    expose-session-attributes: true
+#consul KEY/VALUE  config/application,dev/configuration目录下的配置信息
+# 如果使用了 spring cloud consul config 可以下面内容放入consul上
+  datasource:
+    ssbp:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:informix-sqli://121.196.213.243:49001/eas:informixserver=tienon_db;NEWLOACLE=en_us,zh_cn,zh_tw;NEWCODESET=GBK,8859-1,819,Big5;IFX_USE_STRENC=true;
+      username: informix
+      password: Tienon@informix.com
+      driver-class-name: com.informix.jdbc.IfxDriver
+      max-active: 10
+      max-idle: 3
+      min-idle: 3
+      initial-size: 5
+      filters: stat,slf4j
+      connectionInitSqls: "SET LOCK MODE TO WAIT 5"
 
 #监控
 endpoints:
@@ -41,4 +64,13 @@ endpoints:
   health:
     sensitive: false
 
+#consul KEY/VALUE  config/ccb-job-admin/configuration目录下的配置信息
+ccb:
+  job:
+    log: /home/ap/ssbp/log/ccb-job/ccb-job-admin.log
+    login:
+      username: admin
+      password: 123456
+ssbp:
+      smsUrl:
 

@@ -9,12 +9,10 @@
 
 	<!-- 配置02、执行器 -->
 	<bean id="ccbJobExecutor" class="com.ccb.job.core.executor.CcbJobExecutor" init-method="start" destroy-method="destroy" >
-		<!-- 执行器IP[选填]，为空则自动获取 -->
-		<!--<property name="ip" value="${ccb.job.executor.ip}" />-->
 		<!-- 执行器端口号[必须] -->
 		<property name="port" value="${ccb.job.executor.port}" />
 		<!-- 执行器AppName[选填]，为空则关闭自动注册 -->
-		<property name="appName" value="${ccb.job.executor.appname}" />
+		<property name="appName" value="${spring.application.name}" />
 		<!-- 执行器注册中心地址[选填]，为空则关闭自动注册 -->
 		<property name="adminAddresses" value="${ccb.job.admin.addresses}" />
 		<!-- 执行器日志路径[必填] -->

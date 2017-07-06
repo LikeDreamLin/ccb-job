@@ -172,12 +172,5 @@
 
 <#macro commonFooter >
 	<footer class="main-footer">
-        Powered by <b>XXL-JOB</b> 1.7
-		<div class="pull-right hidden-xs">
-            <strong>Copyright &copy; 2015-${.now?string('yyyy')} &nbsp;
-                <a href="https://github.com/xuxueli/xxl-job" target="_blank" >github</a>&nbsp;
-                <a href="http://my.oschina.net/xuxueli/blog/690978" target="_blank" >oschina</a>
-            </strong><!-- All rights reserved. -->
-		</div>
 	</footer>
 </#macro>

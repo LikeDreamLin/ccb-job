@@ -6,7 +6,7 @@ spring:
     name: ccb-job-core-executor
   cloud:
     consul:
-      host: 128.1.76.194
+      host: localhost
       port: 8500
       enabled: true
       config:
@@ -38,4 +38,15 @@ endpoints:
 
 logging:
     config: classpath:logback.xml
+
+#  consul上面的配置文件信息    config/ccb-job-core-executor/configuration：
+ccb:
+ job:
+  admin:
+   addresses: http://localhost:5555
+  executor:
+   port: 8888
+   logpath: /home/ap/ssbp/log/ccb-job/ccb-job-executor
+   #ip:
+
 
