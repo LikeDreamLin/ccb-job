@@ -19,12 +19,3 @@ ccb-job 是在开源框架xxl-job（https://github.com/xuxueli/xxl-job） 上进
 7.。。。
 
 
-启动步骤：
-
-1.将informix脚本导入自己的数据库
-
-2.修改ccb-job-admin中关于数据库的配置信息
-
-3.在本地启动consul服务
-
-4.将informix的驱动包放本地仓库
